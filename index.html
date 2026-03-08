@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Abacus Practice Game</title>
+<style>
+body{
+font-family: Arial;
+text-align:center;
+background:#f2f2f2;
+}
+
+.container{
+background:white;
+padding:30px;
+margin-top:50px;
+width:300px;
+margin-left:auto;
+margin-right:auto;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+button{
+padding:10px 20px;
+font-size:16px;
+margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>🧮 Abacus Game</h1>
+
+<p>This game is made by KRISH also known as JHUMI</p>
+
+<p id="question">Press Start</p>
+
+<input type="number" id="answer" placeholder="Your Answer">
+
+<br>
+
+<button onclick="checkAnswer()">Submit</button>
+<button onclick="newQuestion()">New Question</button>
+
+<p id="result"></p>
+
+</div>
+
+<script>
+
+let num1
+let num2
+let correct
+
+function newQuestion(){
+
+num1 = Math.floor(Math.random()*10)
+num2 = Math.floor(Math.random()*10)
+
+correct = num1 + num2
+
+document.getElementById("question").innerHTML =
+num1 + " + " + num2 + " = ?"
+
+document.getElementById("result").innerHTML=""
+}
+
+function checkAnswer(){
+
+let user =
+document.getElementById("answer").value
+
+if(user == correct){
+document.getElementById("result").innerHTML =
+"✅ Correct!"
+}
+else{
+document.getElementById("result").innerHTML =
+"❌ Wrong! Answer is " + correct
+}
+
+}
+
+</script>
+
+</body>
+</html>
