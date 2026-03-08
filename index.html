@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <title>Abacus Practice Game</title>
+
 <style>
+
 body{
 font-family: Arial;
 text-align:center;
-background:#f2f2f2;
+background:#e8f4ff;
 }
 
 .container{
 background:white;
 padding:30px;
 margin-top:50px;
-width:300px;
+width:350px;
 margin-left:auto;
 margin-right:auto;
 border-radius:10px;
@@ -24,27 +27,46 @@ button{
 padding:10px 20px;
 font-size:16px;
 margin-top:10px;
+cursor:pointer;
 }
+
+input{
+padding:8px;
+font-size:16px;
+width:120px;
+}
+
+#score{
+font-size:18px;
+color:green;
+}
+
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
+
 <h1>🧮 Abacus Game</h1>
 
-<p>This game is made by KRISH also known as JHUMI</p>
+<p><b>This game is made by KRISH also known as JHUMI</b></p>
 
-<p id="question">Press Start</p>
+<p id="question">Click New Question</p>
 
-<input type="number" id="answer" placeholder="Your Answer">
+<input type="number" id="answer" placeholder="Answer">
 
-<br>
+<br><br>
 
 <button onclick="checkAnswer()">Submit</button>
 <button onclick="newQuestion()">New Question</button>
 
 <p id="result"></p>
+
+<p id="score">Score: 0</p>
+
+<p id="visits"></p>
 
 </div>
 
@@ -53,6 +75,8 @@ margin-top:10px;
 let num1
 let num2
 let correct
+let score = 0
+
 
 function newQuestion(){
 
@@ -64,8 +88,12 @@ correct = num1 + num2
 document.getElementById("question").innerHTML =
 num1 + " + " + num2 + " = ?"
 
+document.getElementById("answer").value = ""
+
 document.getElementById("result").innerHTML=""
+
 }
+
 
 function checkAnswer(){
 
@@ -73,15 +101,40 @@ let user =
 document.getElementById("answer").value
 
 if(user == correct){
+
+score++
+
 document.getElementById("result").innerHTML =
 "✅ Correct!"
-}
-else{
-document.getElementById("result").innerHTML =
-"❌ Wrong! Answer is " + correct
-}
 
 }
+else{
+
+document.getElementById("result").innerHTML =
+"❌ Wrong! Correct answer is " + correct
+
+}
+
+document.getElementById("score").innerHTML =
+"Score: " + score
+
+}
+
+
+// Player counter (device based)
+
+let visits = localStorage.getItem("visits")
+
+if(visits == null){
+visits = 1
+}else{
+visits = Number(visits) + 1
+}
+
+localStorage.setItem("visits", visits)
+
+document.getElementById("visits").innerHTML =
+"Players visited on this device: " + visits
 
 </script>
 
